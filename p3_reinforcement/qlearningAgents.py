@@ -47,7 +47,7 @@ class QLearningAgent(ReinforcementAgent):
         ReinforcementAgent.__init__(self, **args)
 
         "*** YOUR CODE HERE ***"
-        self.qValues = util.Counter()  #(state, action) -->Q-val, defaults to 0
+        self.qValues = util.Counter()  # (state, action) -->Q-val, defaults to 0
 
     def getQValue(self, state, action):
         """
@@ -107,7 +107,7 @@ class QLearningAgent(ReinforcementAgent):
           HINT: You might want to use util.flipCoin(prob)
           HINT: To pick randomly from a list, use random.choice(list)
         """
-        #Pick Action
+        # Pick Action
         legalActions = self.getLegalActions(state)
         action = None
         "*** YOUR CODE HERE ***"
@@ -133,7 +133,8 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         oldQ = self.getQValue(state, action)
-        newGuestimate = reward + self.discount * self.computeValueFromQValues(nextState)
+        newGuestimate = reward + self.discount * \
+            self.computeValueFromQValues(nextState)
         discrepancy = newGuestimate - oldQ
         self.qValues[(state, action)] = oldQ + self.alpha * (discrepancy)
 
